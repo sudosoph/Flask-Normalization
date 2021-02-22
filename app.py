@@ -12,21 +12,18 @@ def index():
 
 @app.route("/normalize")    
 def main():
-    return 'Normalization Page'
+    data = request.get_json()
+    return data
 
-@app.route("/normalize/<audioid>", methods=['GET','POST'])    
-def normalize():
-    if request.method == 'GET':
-        data = request.form
-        return jsonify(isError=False,
-        message = "Success",
-        statusCode=200,
-        data = data), 200
-    if request.method == 'POST':
-        sound = AudioSegment.from_file("test.wav", "wav")
-        normalized_sound = match_target_amplitude(sound, -20.0)
-        normalized_sound.export("normalized_test.wav", format="wav")
-        return 'Normalization script'
+@app.route("/normalize/<audio_id>")    
+def normalize(audio_id):
+        audio_id = audio_id
+
+        # Pydub Normalization script
+        #sound = AudioSegment.from_file("test.wav", "wav")
+        #normalized_sound = match_target_amplitude(sound, -20.0)
+        #normalized_sound.export("normalized_test.wav", format="wav")
+        return audio_id
 
 if  __name__ == "__main__":
     app.run()
