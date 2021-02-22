@@ -10,7 +10,11 @@ def match_target_amplitude(sound, target_dBFS):
 def index():
     return 'Index Page'
 
-@app.route("/normalize/<audio_id>", methods=['GET','POST','DELETE'])    
+@app.route("/normalize")    
+def main():
+    return 'Normalization Page'
+
+@app.route("/normalize/<audioid>", methods=['GET','POST'])    
 def normalize():
     if request.method == 'GET':
         data = request.form
