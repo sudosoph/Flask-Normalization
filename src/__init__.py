@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 # instantiate the db
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 # print(app.config, file=sys.stderr)
 
@@ -24,9 +24,8 @@ def create_app(script_info=None):
     db.init_app(app)
 
     # register blueprints
-    from src.api.ping import ping_blueprint
-
-    app.register_blueprint(ping_blueprint)
+    from src.api.normalize import normalize_blueprint
+    app.register_blueprint(normalize_blueprint)
 
     # shell context for flask cli
     @app.shell_context_processor
